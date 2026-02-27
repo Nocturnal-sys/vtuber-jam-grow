@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c38mou257ypf1"]
+
+[ext_resource type="Script" uid="uid://dbpgnitam7hj8" path="res://scripts/enemy.gd" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://c7aeuebwnki72" path="res://scripts/detection_area.gd" id="2_md0e3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tegq"]
+size = Vector2(8, 8)
+
+[sub_resource type="Gradient" id="Gradient_8tegq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7p1mj"]
+gradient = SubResource("Gradient_8tegq")
+fill_from = Vector2(1, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8tegq"]
+polygon = PackedVector2Array(0, 0, -4, 4, 4, 4, 4, -4, -4, -4)
+
+[node name="Enemy" type="AnimatableBody2D" unique_id=185704065]
+script = ExtResource("1_7p1mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=881373086]
+shape = SubResource("RectangleShape2D_8tegq")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1520805605]
+color = Color(0.7607843, 1, 1, 1)
+energy = 0.7
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_7p1mj")
+texture_scale = 3.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=661515912]
+occluder = SubResource("OccluderPolygon2D_8tegq")
+
+[node name="DetectionArea" type="Node2D" parent="." unique_id=1528910415]
+position = Vector2(-4, 0)
+script = ExtResource("2_md0e3")
+
+[node name="DetectionRay" type="RayCast2D" parent="DetectionArea" unique_id=89347862]
+target_position = Vector2(-92, 0)
+collision_mask = 5
+collide_with_areas = true
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

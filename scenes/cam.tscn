@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://djyp26b4rc4qq"]
+
+[ext_resource type="PackedScene" uid="uid://c38mou257ypf1" path="res://scenes/enemy.tscn" id="1_m73v5"]
+[ext_resource type="Texture2D" uid="uid://bgxhcb7qxn7fb" path="res://assets/cam_v01.png" id="2_mevj5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uegm1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mevj5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_mevj5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LightOccluder2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DetectionArea:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uegm1"]
+resource_name = "scan"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10, 15, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7853981633974483, 0.0, -0.7853981633974483, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LightOccluder2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5, 10, 15, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7853981633974483, 0.0, -0.7853981633974483, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DetectionArea:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5, 10, 15, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7853981633974483, 0.0, -0.7853981633974483, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s354y"]
+_data = {
+&"RESET": SubResource("Animation_mevj5"),
+&"scan": SubResource("Animation_uegm1")
+}
+
+[node name="Cam" unique_id=185704065 instance=ExtResource("1_m73v5")]
+
+[node name="PointLight2D" parent="." index="1" unique_id=1520805605]
+position = Vector2(1, 0)
+
+[node name="LightOccluder2D" parent="." index="2" unique_id=661515912]
+position = Vector2(1, 0)
+
+[node name="DetectionArea" parent="." index="3" unique_id=1528910415]
+position = Vector2(0, 0)
+
+[node name="DetectionRay2" type="RayCast2D" parent="DetectionArea" index="1" unique_id=487965283]
+target_position = Vector2(-90.9, -14.4)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="DetectionRay3" type="RayCast2D" parent="DetectionArea" index="2" unique_id=1682806684]
+target_position = Vector2(-87.5, -28.4)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="DetectionRay4" type="RayCast2D" parent="DetectionArea" index="3" unique_id=1504158986]
+target_position = Vector2(-82, -41.8)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="DetectionRay5" type="RayCast2D" parent="DetectionArea" index="4" unique_id=1386071687]
+target_position = Vector2(-74.4, -54.1)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="DetectionRay10" type="RayCast2D" parent="DetectionArea" index="5" unique_id=1377859495]
+target_position = Vector2(-65.1, -65.1)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="DetectionRay6" type="RayCast2D" parent="DetectionArea" index="6" unique_id=118442804]
+target_position = Vector2(-90.9, 14.4)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="DetectionRay7" type="RayCast2D" parent="DetectionArea" index="7" unique_id=248519390]
+target_position = Vector2(-87.5, 28.4)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="DetectionRay8" type="RayCast2D" parent="DetectionArea" index="8" unique_id=1851650949]
+target_position = Vector2(-82, 41.8)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="DetectionRay9" type="RayCast2D" parent="DetectionArea" index="9" unique_id=697676867]
+target_position = Vector2(-74.4, 54.1)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="DetectionRay11" type="RayCast2D" parent="DetectionArea" index="10" unique_id=2020208477]
+target_position = Vector2(-65.1, 65.1)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4" unique_id=1701640653]
+light_mask = 0
+sprite_frames = SubResource("SpriteFrames_uegm1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=951812013]
+libraries/ = SubResource("AnimationLibrary_s354y")
+autoplay = &"scan"
